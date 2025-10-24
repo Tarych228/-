@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Меню блюд</title>
+<style>
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff8f0;
+  margin: 0;
+  padding: 20px;
+  color: #4b2e2e;
+  transition: background-color 0.5s;
+}
+
+/* Заголовки */
+h1, h2, h3 {
+  margin-top: 0;
+  color: #d2691e;
+  transition: color 0.3s;
+}
+
+/* Кнопки */
+button {
+  background-color: #f4a261;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #e2955f;
+  transform: scale(1.05);
+}
+
+/* Вкладки */
+div > button {
+  margin-right: 10px;
+}
+
+/* Разделы меню */
+div[id^=""] {
+  margin-top: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+div[id^=""]:not([style*="display: none"]) {
+  display: block;
+}
+
+/* Попапы */
+#popup, #orderPopup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+  animation: fadeInBg 0.5s;
+  z-index: 1000;
+}
+
+#popup > div, #orderPopup > div {
+  background-color: #fff0e1;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 80%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  animation: slideIn 0.5s ease-out;
+}
+
+#popup button, #orderPopup button {
+  margin-top: 10px;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeInBg {
+  from {background-color: rgba(0,0,0,0);}
+  to {background-color: rgba(0,0,0,0.4);}
+}
+
+@keyframes slideIn {
+  from {transform: translateY(-20px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+</style>
+</head>
+<body>
+
+<h1>Меню блюд</h1>
+
+<!-- Вкладки -->
+<div>
+  <button onclick="switchTab('appetizers')">Закуски</button>
+  <button onclick="switchTab('main')">Основные блюда</button>
+  <button onclick="switchTab('desserts')">Десерты</button>
+</div>
+
+<!-- Раздел закуски -->
+<div id="appetizers" style="display:block;">
+  <h2>Закуски</h2>
+  <div>
+    <h3>Ассорти из овощей</h3>
+    <p>Цена: 150 ₽</p>
+    <button onclick="showPopup('Ассорти из овощей', 'Свежие овощи, подаваемые с соусом.')">Подробнее</button>
+    <button onclick="showOrder('Ассорти из овощей')">Заказать</button>
+  </div>
+  <div>
+    <h3>Брускетта</h3>
+    <p>Цена: 180 ₽</p>
+    <button onclick="showPopup('Брускетта', 'Хрустящий хлеб с помидорами и базиликом.')">Подробнее</button>
+    <button onclick="showOrder('Брускетта')">Заказать</button>
+  </div>
+  <div>
+    <h3>Классический салат</h3>
+    <p>Цена: 120 ₽</p>
+    <button onclick="showPopup('Классический салат', 'Свежие овощи, заправленные оливковым маслом.')">Подробнее</button>
+    <button onclick="showOrder('Классический салат')">Заказать</button>
+  </div>
+</div>
+
+<!-- Раздел основные блюда -->
+<div id="main" style="display:none;">
+  <h2>Основные блюда</h2>
+  <div>
+    <h3>Куриный стейк</h3>
+    <p>Цена: 350 ₽</p>
+    <button onclick="showPopup('Куриный стейк', 'Сочный куриный стейк с пряными травами.')">Подробнее</button>
+    <button onclick="showOrder('Куриный стейк')">Заказать</button>
+  </div>
+  <div>
+    <h3>Лосось на гриле</h3>
+    <p>Цена: 500 ₽</p>
+    <button onclick="showPopup('Лосось на гриле', 'Свежий лосось, запечённый на гриле.')">Подробнее</button>
+    <button onclick="showOrder('Лосось на гриле')">Заказать</button>
+  </div>
+  <div>
+    <h3>Говяжий строганов</h3>
+    <p>Цена: 420 ₽</p>
+    <button onclick="showPopup('Говяжий строганов', 'Нежное говяжье мясо в сливочном соусе.')">Подробнее</button>
+    <button onclick="showOrder('Говяжий строганов')">Заказать</button>
+  </div>
+</div>
+
+<!-- Раздел десерты -->
+<div id="desserts" style="display:none;">
+  <h2>Десерты</h2>
+  <div>
+    <h3>Медовик</h3>
+    <p>Цена: 200 ₽</p>
+    <button onclick="showPopup('Медовик', 'Торт из медового теста с кремом.')">Подробнее</button>
+    <button onclick="showOrder('Медовик')">Заказать</button>
+  </div>
+  <div>
+    <h3>Фруктовое ассорти</h3>
+    <p>Цена: 180 ₽</p>
+    <button onclick="showPopup('Фруктовое ассорти', 'Свежие сезонные фрукты.')">Подробнее</button>
+    <button onclick="showOrder('Фруктовое ассорти')">Заказать</button>
+  </div>
+  <div>
+    <h3>Тирамису</h3>
+    <p>Цена: 220 ₽</p>
+    <button onclick="showPopup('Тирамису', 'Классический итальянский десерт с кофе и маскарпоне.')">Подробнее</button>
+    <button onclick="showOrder('Тирамису')">Заказать</button>
+  </div>
+</div>
+
+<!-- Попап с информацией -->
+<div id="popup">
+  <div>
+    <button onclick="closePopup()">Закрыть</button>
+    <h2 id="popup-title"></h2>
+    <p id="popup-description"></p>
+  </div>
+</div>
+
+<!-- Попап заказа -->
+<div id="orderPopup">
+  <div>
+    <button onclick="closeOrder()">Закрыть</button>
+    <h2>Заказ блюда</h2>
+    <p id="order-item"></p>
+    <form id="orderForm" onsubmit="submitOrder(event)">
+      <label>Ваше имя:</label><br/>
+      <input type="text" id="name" required/><br/><br/>
+      <label>Контакт:</label><br/>
+      <input type="text" id="contact" required/><br/><br/>
+      <button type="submit">Отправить заказ</button>
+    </form>
+  </div>
+</div>
+
+<script>
+function switchTab(tabName) {
+  document.querySelectorAll('div[id^=""]').forEach(div => {
+    if(div.id === tabName) {
+      div.style.display = 'block';
+    } else {
+      div.style.display = 'none';
+    }
+  });
+}
+
+function showPopup(title, description) {
+  document.getElementById('popup-title').innerText = title;
+  document.getElementById('popup-description').innerText = description;
+  document.getElementById('popup').style.display = 'flex';
+}
+
+function closePopup() {
+  document.getElementById('popup').style.display = 'none';
+}
+
+function showOrder(itemName) {
+  document.getElementById('order-item').innerText = itemName;
+  document.getElementById('orderPopup').style.display = 'flex';
+}
+
+function closeOrder() {
+  document.getElementById('orderPopup').style.display = 'none';
+}
+
+function submitOrder(event) {
+  event.preventDefault();
+  alert('Спасибо за заказ!');
+  closeOrder();
+}
+</script>
+
+</body>
+</html>
