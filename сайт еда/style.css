@@ -1,0 +1,132 @@
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff4e1; /* теплый бежевый фон */
+  color: #4b3d2f; /* темно-коричневый */
+  margin: 0;
+  padding: 20px;
+  line-height: 1.5;
+  transition: background-color 0.5s;
+}
+
+/* Заголовки */
+h1, h2, h3 {
+  margin-top: 0;
+  font-family: 'Georgia', serif;
+  color: #b35c2f; /* теплый оранжево-коричневый */
+  transition: color 0.5s;
+}
+
+/* Вкладки */
+div > button {
+  background-color: #f9a826; /* теплый оранжевый */
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+div > button:hover {
+  background-color: #e18f1f;
+  transform: scale(1.05);
+}
+
+/* Разделы блюд */
+div[id^=""] {
+  margin-top: 20px;
+  display: none;
+  animation: fadeIn 1s ease forwards;
+}
+
+#appetizers {
+  display: block;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Карточки блюд */
+div {
+  background-color: #fff3e0; /* светлый теплый */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Кнопки внутри карточек */
+button {
+  background-color: #f9a826;
+  border: none;
+  padding: 8px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #e18f1f;
+  transform: scale(1.05);
+}
+
+/* Попапы */
+#popup, #orderPopup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease forwards;
+  z-index: 999;
+}
+
+.popup-content {
+  background-color: #fff8f0;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 80%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  animation: slideIn 0.5s ease forwards;
+}
+
+/* Попап анимации */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Кнопка закрытия попапа */
+.popup-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  float: right;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.popup-close:hover {
+  color: #b35c2f;
+}
+
+/* Анимация для перехода между вкладками */
+@keyframes switchTab {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
